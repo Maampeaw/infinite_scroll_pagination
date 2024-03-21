@@ -167,13 +167,13 @@ class PagingController<PageKeyType, ItemType>
   void notifyStatusListeners(PagingStatus status) {
     assert(_debugAssertNotDisposed());
 
-    if (_statusListeners?.isEmpty) {
+    if (_statusListeners?.isEmpty ?? false) {
       return;
     }
 
     final localListeners = List<PagingStatusListener>.from(_statusListeners!);
     localListeners.forEach((listener) {
-      if (_statusListeners?.contains(listener)) {
+      if (_statusListeners?.contains(listener) ?? false) {
         listener(status);
       }
     });
